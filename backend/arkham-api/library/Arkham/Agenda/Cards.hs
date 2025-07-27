@@ -135,6 +135,7 @@ allAgendaCards =
       , terrorAtFalconPoint
       , terrorDescends
       , thatWhichHasNoName
+      , theFinalMirageAgenda
       , theAlarmIsRaised
       , theArkhamWoods
       , theBarrierIsThin
@@ -753,6 +754,9 @@ theSealWeakens = agenda "08671" "The Seal Weakens" 4 StirringInTheDeep
 
 thatWhichHasNoName :: CardDef
 thatWhichHasNoName = agenda "08672" "That Which Has No Name" 5 StirringInTheDeep
+
+theFinalMirageAgenda :: CardDef
+theFinalMirageAgenda = agenda "08681" "The Final Mirage" 6 StirringInTheDeep
 
 returnToPredatorOrPrey :: CardDef
 returnToPredatorOrPrey =

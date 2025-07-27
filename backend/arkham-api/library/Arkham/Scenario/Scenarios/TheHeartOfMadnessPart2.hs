@@ -179,6 +179,7 @@ instance RunMessage TheHeartOfMadnessPart2 where
       setAside
         $ replicate 15 Enemies.theNamelessMadness
         <> [ Acts.theFinalMirage
+           , Agendas.theFinalMirageAgenda
            , Locations.titanicRamp_182
            , Locations.titanicRamp_183
            , Locations.titanicRamp_184

@@ -5,7 +5,7 @@ import Arkham.Act.Cards qualified as Acts
 import Arkham.Agenda.Cards qualified as Cards
 import Arkham.Agenda.Import.Lifted
 import Arkham.Enemy.Cards qualified as Enemies
-import Arkham.Helpers.Query (getLead, getSetAsideCard, getSetAsideCardsMatching)
+import Arkham.Helpers.Query (getSetAsideCard, getSetAsideCardsMatching)
 import Arkham.Location.Cards qualified as Locations
 import Arkham.Matcher
 import Arkham.Message.Lifted.Choose
@@ -14,6 +14,7 @@ import Arkham.Message.Lifted.Placement
 import Arkham.Modifier
 import Arkham.Scenarios.TheHeartOfMadness.Helpers
 import Arkham.Window (getBatchId)
+import Debug.Trace qualified as Debug
 
 newtype ThatWhichHasNoName = ThatWhichHasNoName AgendaAttrs
   deriving anyclass (IsAgenda, HasModifiersFor)
@@ -34,12 +35,15 @@ instance RunMessage ThatWhichHasNoName where
   runMessage msg a@(ThatWhichHasNoName attrs) = runQueueT $ case msg of
     AdvanceAgenda (isSide B attrs -> True) -> do
       n <- selectCount $ LocationWithModifier $ ScenarioModifier "collapsed"
-      nameless <- select $ enemyIs Enemies.theNamelessMadness
-      lead <- getLead
-      let x = min (n * 3) (length nameless)
-      chooseNM lead x do
-        questionLabeled $ "Set " <> tshow x <> " the nameless madness aside"
-        targets nameless (`place` SetAsideZone)
+      -- should be 15
+      -- alreadySpawned <- select $ enemyIs Enemies.theNamelessMadness
+      -- Debug.traceM $ "alreadySpawned" <> show alreadySpawned
+      let toKeepCount = 15 - (n * 3)
+      Debug.traceM $ "toKeep" <> show toKeepCount
+      -- createSetAsideEnemy_ Enemies.theNamelessMadness =<< selectJust (OutOfPlay SetAsideZone)
+      allNameless <- select $ enemyIs Enemies.theNamelessMadness
+      forM_ (take toKeepCount allNameless) (`place` (OutOfPlay RemovedZone))
+      forM_ (drop toKeepCount allNameless) (`place` (OutOfPlay SetAsideZone))
       doStep 1 msg
       eachInvestigator (discardAllClues attrs)
       eachInvestigator (`place` Unplaced)
@@ -49,11 +53,12 @@ instance RunMessage ThatWhichHasNoName where
       placeSetAsideLocation_ Locations.hiddenTunnelAWayOut
       doStep 2 msg
       act <- getSetAsideCard Acts.theFinalMirage
+      nextAgenda <- getSetAsideCard Cards.theFinalMirageAgenda
       push $ SetCurrentActDeck 1 [act]
+      push $ SetCurrentAgendaDeck 1 [nextAgenda]
       toDiscard GameSource attrs
       pure a
     DoStep 1 (AdvanceAgenda (isSide B attrs -> True)) -> do
-      selectEach (enemyIs Enemies.theNamelessMadness) (`place` Unplaced)
       pure a
     DoStep 2 (AdvanceAgenda (isSide B attrs -> True)) -> do
       connectLocations "theGateOfYquaa" "titanicRamp1"
@@ -62,8 +67,10 @@ instance RunMessage ThatWhichHasNoName where
       connectLocations "titanicRamp3" "titanicRamp4"
       connectLocations "titanicRamp4" "hiddenTunnel"
       firstRamp <- selectJust $ LocationWithLabel "titanicRamp1"
-      eachInvestigator \iid -> moveTo attrs iid firstRamp
-      selectEach (enemyIs Enemies.theNamelessMadness) \e -> enemyMoveTo attrs e firstRamp
+      keptInRemoved <- select $ (OutOfPlayEnemy RemovedZone $ enemyIs Enemies.theNamelessMadness)
+      eachInvestigator (\iid -> moveTo attrs iid firstRamp)
+      forM_ keptInRemoved $ \e -> do
+        enemyMoveTo attrs e firstRamp
       pure a
     UseCardAbility iid (isSource attrs -> True) 1 (getBatchId -> batchId) _ -> do
       push $ IgnoreBatch batchId

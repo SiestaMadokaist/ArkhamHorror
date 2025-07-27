@@ -7,12 +7,14 @@ import Arkham.Enemy.Cards qualified as Enemies
 import Arkham.Helpers.Query (getSetAsideCardsMatching)
 import Arkham.Helpers.Window (discoveredCluesAt)
 import Arkham.Location.Cards qualified as Locations
+import Arkham.Agenda.Cards qualified as Agenda
 import Arkham.Matcher
 import Arkham.Message.Lifted.Choose
 import Arkham.Message.Lifted.Move
 import Arkham.Message.Lifted.Placement
 import Arkham.Modifier
 import Arkham.Scenarios.TheHeartOfMadness.Helpers
+-- import Debug.Trace qualified as Debug
 
 newtype CollapseThePylons = CollapseThePylons ActAttrs
   deriving anyclass (IsAct, HasModifiersFor)
@@ -46,12 +48,13 @@ instance RunMessage CollapseThePylons where
     AdvanceAct (isSide B attrs -> True) _ _ -> do
       nameless <- select $ enemyIs Enemies.theNamelessMadness
       lead <- getLead
-      let x = max 0 (length nameless - 3)
-      when (x > 3) do
+      let x = max 0 $ (length nameless) - 3
+      when (x > 0) do
         chooseNM lead x do
           questionLabeled $ "Set " <> tshow x <> " the nameless madness aside"
-          targets nameless (`place` SetAsideZone)
+          targets nameless (`place` (OutOfPlay SetAsideZone))
       doStep 1 msg
+      -- leftInPlay <- select $ 
       eachInvestigator (discardAllClues attrs)
       eachInvestigator (`place` Unplaced)
       selectEach (not_ $ locationIs Locations.theGateOfYquaa) removeLocation
@@ -60,15 +63,22 @@ instance RunMessage CollapseThePylons where
       placeSetAsideLocation_ Locations.hiddenTunnelAWayOut
       doStep 2 msg
       theFinalMirage <- getSetAsideCard Cards.theFinalMirage
+      theFinalMirageAgenda <- getSetAsideCard Agenda.theFinalMirageAgenda
       push $ SetCurrentActDeck 1 [theFinalMirage]
-      push $ SetCurrentAgendaDeck 1 []
+      push $ SetCurrentAgendaDeck 1 [theFinalMirageAgenda]
       gameModifier attrs (ActTarget $ ActId Cards.theFinalMirage.cardCode) (ScenarioModifier "collapsed")
       toDiscard GameSource attrs
+      agenda <- selectJust AnyAgenda
+      toDiscard GameSource agenda
       pure a
     DoStep 1 (AdvanceAct (isSide B attrs -> True) _ _) -> do
-      selectEach (enemyIs Enemies.theNamelessMadness) (`place` Unplaced)
+      leftInPlay <- select $ InPlayEnemy $ enemyIs Enemies.theNamelessMadness
+      forM_ leftInPlay (`place` (OutOfPlay RemovedZone))
+      -- allNameless <- select $ enemyIs Enemies.theNamelessMadness
+      -- forM_ allNameless (`place` (OutOfPlay SetAsideZone))
       pure a
     DoStep 2 (AdvanceAct (isSide B attrs -> True) _ _) -> do
+      -- nameless <- select $ enemyIs Enemies.theNamelessMadness
       connectLocations "theGateOfYquaa" "titanicRamp1"
       connectLocations "titanicRamp1" "titanicRamp2"
       connectLocations "titanicRamp2" "titanicRamp3"
@@ -76,6 +86,8 @@ instance RunMessage CollapseThePylons where
       connectLocations "titanicRamp4" "hiddenTunnel"
       firstRamp <- selectJust $ LocationWithLabel "titanicRamp1"
       eachInvestigator (\iid -> moveTo attrs iid firstRamp)
-      selectEach (enemyIs Enemies.theNamelessMadness) \e -> enemyMoveTo attrs e firstRamp
+      keptInRemoved <- select $ (OutOfPlayEnemy RemovedZone $ enemyIs Enemies.theNamelessMadness)
+      forM_ keptInRemoved $ \e -> do
+        enemyMoveTo attrs e firstRamp
       pure a
     _ -> CollapseThePylons <$> liftRunMessage msg attrs
