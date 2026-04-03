@@ -1,5 +1,6 @@
 module Arkham.Asset.Cards (module Arkham.Asset.Cards, module X) where
 
+import Arkham.Asset.Cards.BaldursGateIII as X
 import Arkham.Asset.Cards.EdgeOfTheEarth as X
 import Arkham.Asset.Cards.NightOfTheZealot as X
 import Arkham.Asset.Cards.Parallel as X
@@ -130,6 +131,7 @@ allPlayerAssetCards =
       , blur4
       , bonesaw
       , bonnieWalshLoyalAssistant
+      , boo
       , bookOfLivingMythsChronicleOfWonders
       , bookOfPsalms
       , bookOfShadows1

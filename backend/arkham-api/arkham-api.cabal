@@ -1,6 +1,6 @@
 cabal-version: 1.12
 
--- This file has been generated from package.yaml by hpack version 0.38.0.
+-- This file has been generated from package.yaml by hpack version 0.38.1.
 --
 -- see: https://github.com/sol/hpack
 
@@ -612,6 +612,7 @@ library
       Arkham.Asset.Assets.Blur4
       Arkham.Asset.Assets.Bonesaw
       Arkham.Asset.Assets.BonnieWalshLoyalAssistant
+      Arkham.Asset.Assets.Boo
       Arkham.Asset.Assets.BookOfLivingMythsChronicleOfWonders
       Arkham.Asset.Assets.BookOfPsalms
       Arkham.Asset.Assets.BookOfShadows1
@@ -1434,6 +1435,7 @@ library
       Arkham.Asset.Assets.ZoeysCross
       Arkham.Asset.Assets.ZoeysCrossAdvanced
       Arkham.Asset.Cards
+      Arkham.Asset.Cards.BaldursGateIII
       Arkham.Asset.Cards.Base
       Arkham.Asset.Cards.EdgeOfTheEarth
       Arkham.Asset.Cards.Import
@@ -2619,6 +2621,7 @@ library
       Arkham.Investigator.Cards.MarkHarrigan
       Arkham.Investigator.Cards.MichaelMcGlen
       Arkham.Investigator.Cards.MinhThiPhan
+      Arkham.Investigator.Cards.Minsc
       Arkham.Investigator.Cards.MontereyJack
       Arkham.Investigator.Cards.MontereyJackParallel
       Arkham.Investigator.Cards.NathanielCho
@@ -3822,6 +3825,7 @@ library
       Arkham.Skill.Cards.SignumCrucis2
       Arkham.Skill.Cards.Skeptic1
       Arkham.Skill.Cards.Steadfast
+      Arkham.Skill.Cards.StoneLord
       Arkham.Skill.Cards.StrengthInNumbers1
       Arkham.Skill.Cards.StrokeOfLuck2
       Arkham.Skill.Cards.StrongArmed1

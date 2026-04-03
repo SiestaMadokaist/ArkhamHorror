@@ -104,6 +104,7 @@ allInvestigatorCards =
       , rexMurphyParallel
       , fatherMateoParallel
       , jennyBarnesParallel
+      , minsc
       ]
 
 allEncounterInvestigatorCards :: Map CardCode CardDef
@@ -712,3 +713,11 @@ fatherMateoParallel =
 jennyBarnesParallel :: CardDef
 jennyBarnesParallel =
   investigator "90084" ("Jenny Barnes" <:> "The Dilettante") Rogue [Drifter, Socialite]
+
+minsc :: CardDef
+minsc =
+  investigator
+    "xbg3016"
+    ("Minsc" <:> "The Rashemen Warrior")
+    Rogue
+    [Human, Veteran, Wayfarer]
