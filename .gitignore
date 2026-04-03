@@ -40,7 +40,8 @@ logfile
 
 # Large image assets (served from CloudFront CDN in both dev and prod)
 # Run `make fetch-images` to download locally if needed
-frontend/public/img/arkham/cards/
+frontend/public/img/arkham/cards/*
+!frontend/public/img/arkham/cards/xbg3*.avif
 frontend/public/img/arkham/es/
 frontend/public/img/arkham/fr/
 frontend/public/img/arkham/ita/
