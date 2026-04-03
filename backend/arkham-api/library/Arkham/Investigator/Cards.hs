@@ -114,6 +114,7 @@ allInvestigatorCards =
       , fatherMateoParallel
       , jennyBarnesParallel
       , lolaHayesParallel
+      , minsc
       ]
 
 allEncounterInvestigatorCards :: Map CardCode CardDef
@@ -786,3 +787,11 @@ carolynFern2 =
 marieLambeau2 :: CardDef
 marieLambeau2 =
   investigator "60451" ("Marie Lambeau" <:> "The Entertainer") Mystic [Performer, Witch]
+
+minsc :: CardDef
+minsc =
+  investigator
+    "xbg3016"
+    ("Minsc" <:> "The Rashemen Warrior")
+    Rogue
+    [Human, Veteran, Wayfarer]

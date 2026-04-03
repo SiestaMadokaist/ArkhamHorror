@@ -145,6 +145,7 @@ allPlayerSkillCards =
       , slippery
       , soulLink
       , steadfast
+      , stoneLord
       , strengthInNumbers1
       , strokeOfLuck2
       , strongArmed1
@@ -748,6 +749,17 @@ occultTheory1 =
     , cdLevel = Just 1
     , cdOutOfPlayEffects = [InHandEffect]
     }
+
+stoneLord :: CardDef
+stoneLord =
+  signature "xbg3016"
+    $ (skill "xbg3018" "Stone Lord" [#wildMinus, #wildMinus] Neutral)
+      { cdCardTraits = setFromList [Power, Fated]
+      , cdCardSubType = Just Weakness
+      , cdLevel = Nothing
+      , cdCommitRestrictions = [MustBeCommittedToYourTest]
+      , cdOutOfPlayEffects = [InHandEffect]
+      }
 
 strengthInNumbers1 :: CardDef
 strengthInNumbers1 =

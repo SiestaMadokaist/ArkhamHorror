@@ -1,6 +1,7 @@
 module Arkham.Asset.Cards (module Arkham.Asset.Cards, module X) where
 
 import Arkham.Asset.Cards.AndrePatel as X
+import Arkham.Asset.Cards.BaldursGateIII as X
 import Arkham.Asset.Cards.Core2026 as X
 import Arkham.Asset.Cards.EdgeOfTheEarth as X
 import Arkham.Asset.Cards.NightOfTheZealot as X
@@ -153,6 +154,7 @@ allPlayerAssetCards =
       , bodyguard2
       , bonesaw
       , bonnieWalshLoyalAssistant
+      , boo
       , bookOfLivingMythsChronicleOfWonders
       , bookOfPsalms
       , bookOfShadows1
