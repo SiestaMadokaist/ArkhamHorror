@@ -83,10 +83,21 @@ export function isLocalized(src: string) {
   return false
 }
 
+const customCardPrefixes = ['xbg3']
+
+function isCustomCard(path: string): boolean {
+  return customCardPrefixes.some(prefix => path.includes(`/${prefix}`) || path.startsWith(`cards/${prefix}`))
+}
+
 export function imgsrc(src: string) {
   const store = useSiteSettingsStore()
   const language = localStorage.getItem('language') || 'en'
   const path = src.replace(/^\//, '')
+
+  if (isCustomCard(path)) {
+    return `/img/arkham/${path}`
+  }
+
   const fullPath = `${store.assetHost}/img/arkham/${path}`
   
   if (isLocalized(src)) {
