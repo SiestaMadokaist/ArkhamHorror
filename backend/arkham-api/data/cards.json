@@ -33961,7 +33961,7 @@
         "position": 16,
         "quantity": 1,
         "real_name": "Minsc",
-        "real_text": "You begin the game with Boo in play.\n[reaction] After you succeed at a skill test by 2 or more: Gain 1 resource. (Limit once per round.)\n[elder_sign] effect: +1. After this test ends, ready Boo.",
+        "real_text": "You begin the game with Boo in play.\n[reaction] After you succeed at a skill test by 2 or more: Gain 1 resource.\n[elder_sign] effect: +1. After this test ends, ready Boo.",
         "real_traits": "Human. Veteran. Wayfarer.",
         "sanity": 7,
         "skill_agility": 4,
@@ -33969,7 +33969,7 @@
         "skill_intellect": 1,
         "skill_willpower": 2,
         "subname": "The Rashemen Warrior",
-        "text": "You begin the game with Boo in play.\n[reaction] After you succeed at a skill test by 2 or more: Gain 1 resource. (Limit once per round.)\n[elder_sign] effect: +1. After this test ends, ready Boo.",
+        "text": "You begin the game with Boo in play.\n[reaction] After you succeed at a skill test by 2 or more: Gain 1 resource.\n[elder_sign] effect: +1. After this test ends, ready Boo.",
         "traits": "Human. Veteran. Wayfarer.",
         "type_code": "investigator",
         "type_name": "Investigator"

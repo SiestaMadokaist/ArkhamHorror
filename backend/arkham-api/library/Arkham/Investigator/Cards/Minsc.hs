@@ -20,8 +20,7 @@ minsc =
 
 instance HasAbilities Minsc where
   getAbilities (Minsc x) =
-    [ playerLimit PerRound
-        $ restrictedAbility x 1 (Self <> youExist can.gain.resources)
+    [ restrictedAbility x 1 (Self <> youExist can.gain.resources)
         $ freeReaction
         $ SkillTestResult #after You AnySkillTest (SuccessResult $ atLeast 2)
     ]
