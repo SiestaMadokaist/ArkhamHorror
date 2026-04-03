@@ -722,6 +722,7 @@ library
       Arkham.Asset.Assets.Bodyguard2
       Arkham.Asset.Assets.Bonesaw
       Arkham.Asset.Assets.BonnieWalshLoyalAssistant
+      Arkham.Asset.Assets.Boo
       Arkham.Asset.Assets.BookOfLivingMythsChronicleOfWonders
       Arkham.Asset.Assets.BookOfPsalms
       Arkham.Asset.Assets.BookOfShadows1
@@ -1671,6 +1672,7 @@ library
       Arkham.Asset.Assets.ZoeysCrossAdvanced
       Arkham.Asset.Cards
       Arkham.Asset.Cards.AndrePatel
+      Arkham.Asset.Cards.BaldursGateIII
       Arkham.Asset.Cards.Base
       Arkham.Asset.Cards.CarolynFern2
       Arkham.Asset.Cards.Core2026
@@ -3091,6 +3093,7 @@ library
       Arkham.Investigator.Cards.MarkHarrigan
       Arkham.Investigator.Cards.MichaelMcGlen
       Arkham.Investigator.Cards.MinhThiPhan
+      Arkham.Investigator.Cards.Minsc
       Arkham.Investigator.Cards.MontereyJack
       Arkham.Investigator.Cards.MontereyJackParallel
       Arkham.Investigator.Cards.NathanielCho
@@ -4560,6 +4563,7 @@ library
       Arkham.Skill.Cards.Slippery
       Arkham.Skill.Cards.SoulLink
       Arkham.Skill.Cards.Steadfast
+      Arkham.Skill.Cards.StoneLord
       Arkham.Skill.Cards.StrengthInNumbers1
       Arkham.Skill.Cards.StrokeOfLuck2
       Arkham.Skill.Cards.StrongArmed1

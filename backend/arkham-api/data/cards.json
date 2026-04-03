@@ -33899,5 +33899,150 @@
         "type_code": "asset",
         "type_name": "Asset",
         "url": "https://arkhamdb.com/card/99003"
+    },
+    {
+        "code": "xbg3016",
+        "deck_limit": 1,
+        "deck_options": [
+            {
+                "faction": [
+                    "rogue",
+                    "neutral"
+                ],
+                "level": {
+                    "max": 5,
+                    "min": 0
+                }
+            },
+            {
+                "error": "You cannot have more than 10 skills that are not Rogue or Neutral",
+                "level": {
+                    "max": 5,
+                    "min": 0
+                },
+                "limit": 10,
+                "type": [
+                    "skill"
+                ]
+            }
+        ],
+        "deck_requirements": {
+            "card": {
+                "xbg3017": {
+                    "xbg3017": "xbg3017"
+                },
+                "xbg3018": {
+                    "xbg3018": "xbg3018"
+                }
+            },
+            "random": [
+                {
+                    "target": "subtype",
+                    "value": "basicweakness"
+                }
+            ],
+            "size": 30
+        },
+        "double_sided": true,
+        "exceptional": false,
+        "exile": false,
+        "faction_code": "rogue",
+        "faction_name": "Rogue",
+        "flavor": "\"Go for the eyes, Boo!\"",
+        "health": 7,
+        "health_per_investigator": false,
+        "hidden": false,
+        "illustrator": "Sarah Stone",
+        "is_unique": true,
+        "name": "Minsc",
+        "pack_code": "bg3",
+        "pack_name": "Baldur's Gate III",
+        "permanent": false,
+        "position": 16,
+        "quantity": 1,
+        "real_name": "Minsc",
+        "real_text": "You begin the game with Boo in play.\n[reaction] After you succeed at a skill test by 2 or more: Gain 1 resource.\n[elder_sign] effect: +1. After this test ends, ready Boo.",
+        "real_traits": "Human. Veteran. Wayfarer.",
+        "sanity": 7,
+        "skill_agility": 4,
+        "skill_combat": 5,
+        "skill_intellect": 1,
+        "skill_willpower": 2,
+        "subname": "The Rashemen Warrior",
+        "text": "You begin the game with Boo in play.\n[reaction] After you succeed at a skill test by 2 or more: Gain 1 resource.\n[elder_sign] effect: +1. After this test ends, ready Boo.",
+        "traits": "Human. Veteran. Wayfarer.",
+        "type_code": "investigator",
+        "type_name": "Investigator"
+    },
+    {
+        "clues_fixed": false,
+        "code": "xbg3017",
+        "cost": 2,
+        "deck_limit": 1,
+        "double_sided": false,
+        "exceptional": false,
+        "exile": false,
+        "faction_code": "neutral",
+        "faction_name": "Neutral",
+        "health": 1,
+        "health_per_investigator": false,
+        "hidden": false,
+        "illustrator": "Brian Valeza",
+        "is_unique": true,
+        "name": "Boo",
+        "pack_code": "bg3",
+        "pack_name": "Baldur's Gate III",
+        "permanent": false,
+        "position": 17,
+        "quantity": 1,
+        "real_name": "Boo",
+        "real_text": "Fast. Minsc deck only.\n[reaction] When you would succeed at a skill test, exhaust Boo: Commit an eligible card from your hand and draw 1 card.\n[reaction] When Boo leaves play, move all damage and horror from Boo to Minsc: Return Boo to your hand.",
+        "real_traits": "Ally. Creature.",
+        "restrictions": {
+            "investigator": {
+                "xbg3016": "xbg3016"
+            }
+        },
+        "sanity": 1,
+        "subname": "Miniature Giant Space Hamster",
+        "text": "Fast. Minsc deck only.\n[reaction] When you would succeed at a skill test, exhaust Boo: Commit an eligible card from your hand and draw 1 card.\n[reaction] When Boo leaves play, move all damage and horror from Boo to Minsc: Return Boo to your hand.",
+        "traits": "Ally. Creature.",
+        "type_code": "asset",
+        "type_name": "Asset"
+    },
+    {
+        "clues_fixed": false,
+        "code": "xbg3018",
+        "deck_limit": 1,
+        "double_sided": false,
+        "exceptional": false,
+        "exile": false,
+        "faction_code": "neutral",
+        "faction_name": "Neutral",
+        "health_per_investigator": false,
+        "hidden": false,
+        "illustrator": "Howard Lyon",
+        "is_unique": false,
+        "name": "Stone Lord",
+        "pack_code": "bg3",
+        "pack_name": "Baldur's Gate III",
+        "permanent": false,
+        "position": 18,
+        "quantity": 1,
+        "real_name": "Stone Lord",
+        "real_text": "While Stone Lord is in your hand, you get -1 to each your skills.\nThis skill's icons subtract from your skill value instead of adding to it.\nIf this skill test fails, exhaust all of your assets and you cannot ready your assets this round.",
+        "real_traits": "Power. Fated.",
+        "restrictions": {
+            "investigator": {
+                "xbg3016": "xbg3016"
+            }
+        },
+        "skill_wild": -2,
+        "subtype_code": "weakness",
+        "subtype_name": "Weakness",
+        "text": "While Stone Lord is in your hand, you get -1 to each your skills.\nThis skill's icons subtract from your skill value instead of adding to it.\nIf this skill test fails, exhaust all of your assets and you cannot ready your assets this round.",
+        "traits": "Power. Fated.",
+        "type_code": "skill",
+        "type_name": "Skill"
     }
 ]
