@@ -757,7 +757,6 @@ stoneLord =
       { cdCardTraits = setFromList [Power, Fated]
       , cdCardSubType = Just Weakness
       , cdLevel = Nothing
-      , cdCommitRestrictions = [MustBeCommittedToYourTest]
       , cdOutOfPlayEffects = [InHandEffect]
       }
 
