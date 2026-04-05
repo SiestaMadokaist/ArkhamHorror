@@ -111,7 +111,7 @@ instance Locateable InvestigatorId where
   getLocationOf = field InvestigatorLocation
 
 instance Locateable EnemyId where
-  getLocationOf = field EnemyLocation
+  getLocationOf = fieldMayJoin EnemyLocation
 
 instance Locateable EnemyAttrs where
   getLocationOf = field EnemyLocation . toId
