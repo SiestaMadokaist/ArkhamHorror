@@ -7,7 +7,7 @@ import Arkham.Location.Cards qualified as Cards
 import Arkham.Location.Import.Lifted
 import Arkham.Matcher
 import Arkham.Message.Lifted.Choose
-import Arkham.Scenarios.HemlockHouse.Helpers (getFloorNumber)
+import Arkham.Scenarios.HemlockHouse.Helpers (floorNumberFromPos)
 import Arkham.Token (Token (..))
 
 newtype BedroomHemlockHouse35 = BedroomHemlockHouse35 LocationAttrs
@@ -22,7 +22,7 @@ bedroomHemlockHouse35 =
 
 instance HasModifiersFor BedroomHemlockHouse35 where
   getModifiersFor (BedroomHemlockHouse35 a) = do
-    floorN <- getFloorNumber a.id
+    let floorN = floorNumberFromPos a.position
     modifySelf a [SetShroud (floorN + 1)]
 
 instance HasAbilities BedroomHemlockHouse35 where

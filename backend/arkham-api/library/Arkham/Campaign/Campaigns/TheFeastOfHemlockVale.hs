@@ -412,7 +412,9 @@ instance RunMessage TheFeastOfHemlockVale where
       let meta = toResultDefault initMeta attrs.meta
       let
         meta' =
-          case mstep of
+          -- mstep is wrapped by `continue` (ContinueCampaignStep) and may carry
+          -- scenario options, so unwrap+normalize before matching the bare steps
+          case (.unwrap.normalize) <$> mstep of
             Just PreludeDawnOfTheSecondDay -> meta {day = Day2, time = Day}
             Just PreludeDawnOfTheFinalDay -> meta {day = Day3, time = Day}
             Just PreludeTheFinalEvening -> meta {day = Day3, time = Night}

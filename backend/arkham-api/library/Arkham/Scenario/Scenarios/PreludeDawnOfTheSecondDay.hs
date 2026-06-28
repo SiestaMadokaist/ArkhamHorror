@@ -69,7 +69,9 @@ instance RunMessage PreludeDawnOfTheSecondDay where
         partitionM (`matches` investigatorWithRecord FinishedTheirMeal) =<< getInvestigators
       storyOnly finishedTheirMeal $ buildFlavor $ h "title" >> p "theHemlockCurse"
       for_ finishedTheirMeal \iid -> addCampaignCardToDeck iid ShuffleIn Skills.theHemlockCurse
+      -- "gnawingHunger": "<p>_Gnawing Hunger_: Your stomach grumbles as the smell of fresh eggs and biscuits wafts out of the Boarding House. Your hunger has caught up to you.</p><ul><li>Suffer 1 physical trauma. Proceed to _Prelude Setup_.</li></ul>"
       storyOnly others $ buildFlavor $ h "title" >> p "gnawingHunger"
+      for_ others \iid -> sufferPhysicalTrauma iid 1
       pure s
     ResolveChaosToken token face iid | face `elem` [Cultist, ElderThing] -> do
       hemlockPreludeResolveChaosToken attrs token face iid

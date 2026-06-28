@@ -12,6 +12,15 @@ newtype EquineHybridA = EquineHybridA EnemyAttrs
   deriving anyclass IsEnemy
   deriving newtype (Show, Eq, ToJSON, FromJSON, Entity)
 
+-- Spawn - Outer Fields (east).
+
+-- Patrol (The Farmhouse).
+
+-- Equine Hybrid ignores traps.
+
+-- Forced - When Equine Hybrid would take any amount of damage: Reduce that amount to 1.
+
+
 equineHybridA :: EnemyCard EquineHybridA
 equineHybridA =
   enemy EquineHybridA Cards.equineHybridA (2, Static 3, 2) (2, 0)

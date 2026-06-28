@@ -26,12 +26,19 @@ scenarioI18n a = campaignI18n $ scope "hemlockHouse" a
 1st Floor (Parlor/Foyer/Dining) is Y=0 → floor 1.
 The Cellar (Shapeless Cellar enemy-location) is at Y<0 → floor 0.
 -}
+floorNumberFromPos :: Maybe Pos -> Int
+floorNumberFromPos = \case
+  Just (Pos _ y) | y >= 0 -> y + 1
+  _ -> 0
+
 getFloorNumber :: (HasGame m, Tracing m) => LocationId -> m Int
 getFloorNumber lid = do
-  mPos <- field LocationPosition lid
-  case mPos of
-    Just (Pos _ y) | y >= 0 -> pure (y + 1)
-    _ -> pure 0
+  -- Resolve the position from the grid rather than `field LocationPosition`.
+  -- The grid contains enemy-locations (e.g. the Shapeless Cellar) as well as
+  -- regular locations, so this works for both and never crashes on an id that
+  -- is not in the regular locations map.
+  grid <- getGrid
+  pure $ floorNumberFromPos $ listToMaybe [pos | GridLocation pos lid' <- flattenGrid grid, lid' == lid]
 
 {- | Number of seals on a location.
 Seals are modeled as Resource tokens placed by the act/agenda's seal action

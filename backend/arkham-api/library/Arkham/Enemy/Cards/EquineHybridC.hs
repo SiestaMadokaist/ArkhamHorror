@@ -4,6 +4,7 @@ import Arkham.Ability
 import Arkham.Enemy.Cards qualified as Cards
 import Arkham.Enemy.Import.Lifted
 import Arkham.Helpers.Modifiers (ModifierType (..), modifySelf)
+import Arkham.Location.Grid
 import Arkham.Matcher
 import Arkham.Scenarios.TheLongestNight.Helpers (pattern IgnoreTraps)
 
@@ -11,8 +12,19 @@ newtype EquineHybridC = EquineHybridC EnemyAttrs
   deriving anyclass IsEnemy
   deriving newtype (Show, Eq, ToJSON, FromJSON, Entity)
 
+-- Spawn - Outer Fields (west).
+
+-- Patrol (The Farmhouse).
+
+-- Equine Hybrid ignores traps.
+
+-- Forced - When Equine Hybrid would take any amount of damage: Reduce that amount to 1.
+
+
 equineHybridC :: EnemyCard EquineHybridC
-equineHybridC = enemy EquineHybridC Cards.equineHybridC (2, Static 3, 2) (2, 0)
+equineHybridC =
+  enemy EquineHybridC Cards.equineHybridC (2, Static 3, 2) (2, 0)
+    & setSpawnAt (LocationInPosition $ Pos (-3) 0)
 
 instance HasModifiersFor EquineHybridC where
   getModifiersFor (EquineHybridC a) =
